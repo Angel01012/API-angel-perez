@@ -100,7 +100,7 @@ const mysql = require('mysql2/promise');
  */
 app.get("/clientes",async (req,res)=>{
     try{
-    const conn = await mysql.createConnection({host:'localhost', user: 'root', password: '162460132-2', database: 'clientes'});
+    const conn = await mysql.createConnection({host:host, user: user, password: password, database: database, port:dbport});
     const [rows,fields] = await conn.query('SELECT * FROM personas');
     res.json(rows);
     }
@@ -133,7 +133,7 @@ app.get("/clientes",async (req,res)=>{
  *         description: El cliente no existe
  */
 app.get("/clientes/:id", async(req, res)=>{
-    const conn = await mysql.createConnection({host:'localhost', user: 'root', password: '162460132-2', database: 'clientes'});
+    const conn = await mysql.createConnection({host:host, user: user, password: password, database: database, port:dbport});
     const [rows,fields] = await conn.query('SELECT * FROM personas where id='+req.params.id);
     if(rows.length==0)
     {
@@ -179,7 +179,7 @@ app.post("/clientes", async (req, res) => {
     console.log("entra a la sentencia");
     const sentencia = `INSERT INTO personas (id,nombre, apellido) VALUES (${req.body.id}, '${req.body.nombre}', '${req.body.apellido}');`;
     try {
-        const conn = await mysql.createConnection({host:'localhost', user: 'root', password: '162460132-2', database: 'clientes'});
+        const conn = await mysql.createConnection({host:host, user: user, password: password, database: database, port:dbport});
         console.log(sentencia)
         const [rows,fields] = await conn.query(sentencia);
         res.json({message: "se Agrego"});
@@ -253,7 +253,7 @@ console.log(sentencia)
     //     return;
     // }
     try {
-        const conn = await mysql.createConnection({host:'localhost', user: 'root', password: '162460132-2', database: 'clientes'});
+        const conn = await mysql.createConnection({host:host, user: user, password: password, database: database, port:dbport});
         const [result] = await conn.query(sentencia);
 
         if (result.affectedRows > 0) {
@@ -293,7 +293,7 @@ app.delete("/clientes",async (req,res)=>{
     const sentencia = `delete FROM personas where id=${req.query.id}`;
     console.log(sentencia);
     try{
-        const conn = await mysql.createConnection({host:'localhost', user: 'root', password: '162460132-2', database: 'clientes'});
+        const conn = await mysql.createConnection({host:host, user: user, password: password, database: database, port:dbport});
         const [rows,fields] = await conn.query(sentencia);
     res.json(rows);
     }    
@@ -326,6 +326,6 @@ app.use((err, req, res, next) => {
     message: err.message
     });
 });
-app.listen(8084,(req,res)=>{
+app.listen(port,(req,res)=>{
     console.log("Servidor express escuchando");
 });
