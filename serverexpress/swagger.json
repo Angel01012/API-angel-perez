@@ -5,5 +5,5 @@
             "title" : "API Empleados",
             "version": "1.0.0"
         },
-        "servers": [{"url": "http://localhost:8084"}]
+        "servers": [{"url": "https://api-angel-perez-production.up.railway.app/"}]
 }

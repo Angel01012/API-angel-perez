@@ -20,7 +20,7 @@ const user = process.env.user || 'root'
 const password = process.env.password || '162460132-2'
 const database = process.env.database || 'clientes'
 const dbport = process.env.dbport || 3306
-
+const url = process.env.url || "https://api-angel-perez-production.up.railway.app/"
 const theme = new SwaggerTheme('v3');
 
 const options = {
